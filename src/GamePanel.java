@@ -9,7 +9,7 @@ public class GamePanel extends JPanel implements ActionListener{
     static final int SCREEN_HEIGHT = 750;
     static final int UNIT_SIZE = 50;
     static final int GAME_UNITS = (SCREEN_WIDTH*SCREEN_HEIGHT)/(UNIT_SIZE*UNIT_SIZE);
-    static final int DELAY = 175;
+    static final int DELAY = 100;
     final int x[] = new int[GAME_UNITS];
     final int y[] = new int[GAME_UNITS];
     int bodyParts = 6;
@@ -42,12 +42,7 @@ public class GamePanel extends JPanel implements ActionListener{
     public void draw(Graphics g) {
 
         if(running) {
-			/*
-			for(int i=0;i<SCREEN_HEIGHT/UNIT_SIZE;i++) {
-				g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
-				g.drawLine(0, i*UNIT_SIZE, SCREEN_WIDTH, i*UNIT_SIZE);
-			}
-			*/
+
             g.setColor(Color.red);
             g.fillOval(appleX, appleY, UNIT_SIZE, UNIT_SIZE);
 
@@ -117,7 +112,7 @@ public class GamePanel extends JPanel implements ActionListener{
             running = false;
         }
         //check if head touches right border
-        if(x[0] > SCREEN_WIDTH) {
+        if(x[0] > (SCREEN_WIDTH-1)) {
             running = false;
         }
         //check if head touches top border
@@ -125,7 +120,7 @@ public class GamePanel extends JPanel implements ActionListener{
             running = false;
         }
         //check if head touches bottom border
-        if(y[0] > SCREEN_HEIGHT) {
+        if(y[0] > (SCREEN_HEIGHT-1)) {
             running = false;
         }
 
