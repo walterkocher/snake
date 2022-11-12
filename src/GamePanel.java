@@ -7,14 +7,14 @@ import java.util.Random;
 public class GamePanel extends JPanel implements ActionListener{
 
     static final int SCREEN_WIDTH = 800;
-    static final int tam=16;
+
     static final int SCREEN_HEIGHT = 800;
 
     static final int UNIT_SIZE = 50;
-
-    static final int DELAY = 600;
-    final int x[] = new int[16];
-    final int y[] = new int[16];
+    static final int GAME_UNITS = (SCREEN_WIDTH*SCREEN_HEIGHT)/(UNIT_SIZE*UNIT_SIZE);
+    static final int DELAY = 100;
+    final int x[] = new int[GAME_UNITS];
+    final int y[] = new int[GAME_UNITS];
 
     int bodyParts = 6;
     int applesEaten;
@@ -75,8 +75,14 @@ public class GamePanel extends JPanel implements ActionListener{
 
     }
     public void newApple(){
-        appleX = random.nextInt((int)(SCREEN_WIDTH/UNIT_SIZE))*UNIT_SIZE;
-        appleY = random.nextInt((int)(SCREEN_HEIGHT/UNIT_SIZE))*UNIT_SIZE;
+
+        for(int i=bodyParts;i>0;i--){
+            appleX = random.nextInt((int)(SCREEN_WIDTH/UNIT_SIZE))*UNIT_SIZE;
+            appleY = random.nextInt((int)(SCREEN_HEIGHT/UNIT_SIZE))*UNIT_SIZE;
+            if(appleX==x[i]&&appleY==y[i]){
+                newApple();
+            }
+        }
 
     }
     public void move(){
