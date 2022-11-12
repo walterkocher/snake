@@ -1,3 +1,4 @@
+import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -24,6 +25,7 @@ public class GamePanel extends JPanel implements ActionListener{
     boolean running = false;
     Timer timer;
     Random random;
+    AudioClip music;
 
     GamePanel(){
         random = new Random();
@@ -111,6 +113,8 @@ public class GamePanel extends JPanel implements ActionListener{
     }
     public void checkApple() {
         if((x[0] == appleX) && (y[0] == appleY)) {
+            music=java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/Crunch.wav"));
+            music.play();
             bodyParts++;
             applesEaten++;
             newApple();
