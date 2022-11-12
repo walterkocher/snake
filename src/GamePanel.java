@@ -3,15 +3,19 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.Random;
 
+
 public class GamePanel extends JPanel implements ActionListener{
 
-    static final int SCREEN_WIDTH = 1300;
-    static final int SCREEN_HEIGHT = 750;
+    static final int SCREEN_WIDTH = 800;
+    static final int tam=16;
+    static final int SCREEN_HEIGHT = 800;
+
     static final int UNIT_SIZE = 50;
-    static final int GAME_UNITS = (SCREEN_WIDTH*SCREEN_HEIGHT)/(UNIT_SIZE*UNIT_SIZE);
-    static final int DELAY = 100;
-    final int x[] = new int[GAME_UNITS];
-    final int y[] = new int[GAME_UNITS];
+
+    static final int DELAY = 600;
+    final int x[] = new int[16];
+    final int y[] = new int[16];
+
     int bodyParts = 6;
     int applesEaten;
     int appleX;
@@ -48,15 +52,18 @@ public class GamePanel extends JPanel implements ActionListener{
 
             for(int i = 0; i< bodyParts;i++) {
                 if(i == 0) {
+                    //cabeza
                     g.setColor(Color.green);
                     g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
                 }
                 else {
+                    //cuerpo
                     g.setColor(new Color(45,180,0));
                     //g.setColor(new Color(random.nextInt(255),random.nextInt(255),random.nextInt(255)));
                     g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
                 }
             }
+
             g.setColor(Color.red);
             g.setFont( new Font("Ink Free",Font.BOLD, 40));
             FontMetrics metrics = getFontMetrics(g.getFont());
@@ -70,6 +77,7 @@ public class GamePanel extends JPanel implements ActionListener{
     public void newApple(){
         appleX = random.nextInt((int)(SCREEN_WIDTH/UNIT_SIZE))*UNIT_SIZE;
         appleY = random.nextInt((int)(SCREEN_HEIGHT/UNIT_SIZE))*UNIT_SIZE;
+
     }
     public void move(){
         for(int i = bodyParts;i>0;i--) {
